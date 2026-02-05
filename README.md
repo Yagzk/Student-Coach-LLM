@@ -43,7 +43,7 @@ Proje; **LLM destekli retrieval (RAG-benzeri)** mimariyi, geri bildirim döngüs
 
 ## 🧩 Sistem Mimarisi 
 
-![LLM Workflow](docs/llm_workflow.png)
+![LLM Workflow](llm_workflow.png)
 
 
 
