@@ -1,4 +1,4 @@
-# Student-Coach-LLM
+
 # 🧠 LLM Tabanlı Öğrenci Koçu – Embedding Destekli Soru Cevap Sistemi
 
 Bu proje, **Large Language Model (LLM)** ve **vektör embedding** tekniklerini kullanan, **kendini genişletebilen** bir yapay zekâ tabanlı soru–cevap sistemidir.
