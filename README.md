@@ -43,53 +43,45 @@ Proje; **LLM destekli retrieval (RAG-benzeri)** mimariyi, geri bildirim döngüs
 
 ## 🧩 Sistem Mimarisi 
 
-Kullanıcı Sorusu
-        |
-        v
-Text Normalization
-        |
-        v
-Sentence Embedding
-        |
-        v
-ChromaDB Similarity Search
-        |
-        v
-+-------------------------+
-|  Benzerlik Skoru Yüksek |
-+-------------------------+
-        | YES
-        v
-   Mevcut Cevap
-        |
-        v
-  Kullanıcıya Gönder
-        |
-        |
-        +----------------------------------+
-        | NO                               |
-        v                                  |
-+-------------------------+                |
-|  Benzerlik Skoru Düşük  |<---------------+
-+-------------------------+
-        |
-        v
-+------------------------------+
-|  LLM ile Yeni Cevap Üretimi  |
-+------------------------------+
-        |
-        v
-+------------------------------+
-|  Embedding Oluştur           |
-+------------------------------+
-        |
-        v
-+------------------------------+
-|  ChromaDB'ye Kaydet          |
-+------------------------------+
-        |
-        v
-  Kullanıcıya Yeni Cevap
+[Kullanıcı Sorusu]
+        ↓
+[Text Normalization]
+        ↓
+[Sentence Embedding]
+        ↓
+[ChromaDB Similarity Search]
+        ↓
+        +-----------------------------+
+        |     Benzerlik Skoru?        |
+        +--------------+--------------+
+                       |
+           +-----------+-----------+
+           |                       |
+           v                       v
++---------------------+   +--------------------------+
+|  Yüksek Benzerlik   |   |   Düşük Benzerlik        |
++----------+----------+   +-----------+--------------+
+           |                          |
+           v                          v
++---------------------+   +--------------------------+
+|  Mevcut Cevap       |   |  LLM ile Yeni Cevap      |
++----------+----------+   +-----------+--------------+
+           |                          |
+           v                          v
++---------------------+   +--------------------------+
+|  Kullanıcıya Gönder |   |  Embedding Oluştur       |
++---------------------+   +-----------+--------------+
+                                      |
+                                      v
+                           +--------------------------+
+                           |  ChromaDB'ye Kaydet      |
+                           +-----------+--------------+
+                                      |
+                                      v
+                           +--------------------------+
+                           |  Kullanıcıya Yeni Cevap  |
+                           +--------------------------+
+
 
 
 
