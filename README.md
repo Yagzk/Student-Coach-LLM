@@ -43,17 +43,53 @@ Proje; **LLM destekli retrieval (RAG-benzeri)** mimariyi, geri bildirim döngüs
 
 ## 🧩 Sistem Mimarisi 
 
-flowchart TD
-    A[Kullanıcı Sorusu] --> B[Text Normalization]
-    B --> C[Sentence Embedding]
-    C --> D[ChromaDB Similarity Search]
-
-    D -->|Yüksek Benzerlik Skoru| E[Mevcut Cevap]
-
-    D -->|Düşük Benzerlik Skoru| F[LLM ile Yeni Cevap Üretimi]
-    F --> G[Embedding Oluştur]
-    G --> H[ChromaDB'ye Kaydet]
-    H --> I[Kullanıcıya Yeni Cevap]
+Kullanıcı Sorusu
+        |
+        v
+Text Normalization
+        |
+        v
+Sentence Embedding
+        |
+        v
+ChromaDB Similarity Search
+        |
+        v
++-------------------------+
+|  Benzerlik Skoru Yüksek |
++-------------------------+
+        | YES
+        v
+   Mevcut Cevap
+        |
+        v
+  Kullanıcıya Gönder
+        |
+        |
+        +----------------------------------+
+        | NO                               |
+        v                                  |
++-------------------------+                |
+|  Benzerlik Skoru Düşük  |<---------------+
++-------------------------+
+        |
+        v
++------------------------------+
+|  LLM ile Yeni Cevap Üretimi  |
++------------------------------+
+        |
+        v
++------------------------------+
+|  Embedding Oluştur           |
++------------------------------+
+        |
+        v
++------------------------------+
+|  ChromaDB'ye Kaydet          |
++------------------------------+
+        |
+        v
+  Kullanıcıya Yeni Cevap
 
 
 
